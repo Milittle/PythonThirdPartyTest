@@ -11,7 +11,31 @@ from numpy import linalg
 import random
 
 
+def create_array_by_arange(start, end, clip):
+    '''
+    根据开始、结束间隔来创建一个一维数组
+    :param start: 开始数字
+    :param end: 结束数字
+    :param clip: 间隔
+    :return: 一维数组
+    '''
+    a = np.arange(start, end, clip)
+    return a
 
+def create_array_by_array(array = np.array([])):
+    '''
+    根据给定array创建数组
+    :param array: 给定数组
+    :return: 数组
+    '''
+    return np.array(array)
+
+def create_matrix_by_matrix(array = np.array([])):
+    if len(array.shape) != 2:
+        raise Exception('数据只能为二维')
+        return np.array([])
+    else:
+        return np.asmatrix(array)
 # 创建数组
 def create_num():
     a = np.array([1,2,3,4,5,6])
@@ -88,10 +112,14 @@ def sample_data_random():
     print(b)
 
 if __name__ == '__main__':
-    U, E, V = cal_svd(A_svd)
-    print(U)
-    print(E)
-    print(V)
+    try:
+        a = create_matrix_by_matrix(np.array([[[1], [2], [3]], [[4], [5], [6]]]))
+    except Exception as exp:
+        print(exp)
+    else:
+        print(a)
+    finally:
+        print('我是最终都要输出的')
 
 
 
